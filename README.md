@@ -1,6 +1,6 @@
 # spatialite
 
-Python wrapper for `sqlite3` which adds SpatiaLite support.
+Wrapper for standard Python module `sqlite3` which adds SpatiaLite support.
 
 
 ## Requirement: mod_spatialite
