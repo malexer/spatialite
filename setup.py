@@ -11,7 +11,7 @@ with open(path.join(cwd, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='spatialite',
-    version='0.0.1',
+    version='0.0.2',
 
     description='Wrapper of sqlite3 module which adds SpatiaLite support.',
     long_description=long_description,
