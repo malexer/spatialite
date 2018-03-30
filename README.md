@@ -8,9 +8,13 @@ Wrapper for standard Python module `sqlite3` which adds SpatiaLite support.
 This module will try to load SpatiaLite extension in SQLite and thus requires
 "mod_spatialite" being present.
 
-For Ubuntu:
+Ubuntu:
 
     $ apt-get install libsqlite3-mod-spatialite
+
+macOS:
+
+    $ brew install libspatialite
 
 
 ## Install
