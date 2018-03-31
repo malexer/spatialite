@@ -6,7 +6,7 @@ from os import path
 cwd = path.abspath(path.dirname(__file__))
 
 
-with open(path.join(cwd, 'README.md'), encoding='utf-8') as f:
+with open(path.join(cwd, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
@@ -15,7 +15,6 @@ setup(
 
     description='Wrapper of sqlite3 module which adds SpatiaLite support.',
     long_description=long_description,
-    long_description_content_type='text/markdown',
     url='https://github.com/malexer/spatialite',
 
     author='Alex (Oleksii) Markov',
