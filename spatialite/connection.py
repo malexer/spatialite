@@ -8,7 +8,7 @@ class LoadExtensionError(sqlite3.Error):
 class Connection(sqlite3.Connection):
 
     EXT_NAMES = (
-        'mod_spatialite',
+        'mod_spatialite',  # Ubuntu
         'mod_spatialite.dylib',  # macOS
     )
 
@@ -16,17 +16,15 @@ class Connection(sqlite3.Connection):
         super(Connection, self).__init__(*args, **kwargs)
         self.enable_spatialite_extension()
 
-    def enable_load_extension(self, enabled):
+    def enable_spatialite_extension(self):
+        # requires mod_spatialite
+        # Ubuntu: $ apt-get install libsqlite3-mod-spatialite
+        # macOS: $ brew install libspatialite
         try:
-            super(Connection, self).enable_load_extension(enabled)
+            self.enable_load_extension(True)
         except AttributeError:
             pass
 
-    def enable_spatialite_extension(self):
-        # requires mod_spatialite.so
-        # Ubuntu: $ apt-get install libsqlite3-mod-spatialite
-        # macOS: $ brew install libspatialite
-        self.enable_load_extension(True)
         error = None
 
         for ext_name in self.EXT_NAMES:
@@ -38,8 +36,8 @@ class Connection(sqlite3.Connection):
 
         msg = (
             'Failed to load SpatiaLite extension. '
-            'Verify that your sqlite3 has load_extension support and '
-            'check that libspatialite is installed. '
+            'Verify that your python module sqlite3 has load_extension '
+            'support and check that libspatialite is installed. '
             'Tried extension names: %s' % ', '.join(self.EXT_NAMES)
         )
         raise LoadExtensionError(msg) from error
