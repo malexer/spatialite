@@ -55,3 +55,8 @@ class Connection(sqlite3.Connection):
 def connect(*args, **kwargs):
     kwargs['factory'] = Connection
     return sqlite3.connect(*args, **kwargs)
+
+
+def get_spatialite_version():
+    with connect(':memory:') as db:
+        return db.execute('SELECT spatialite_version()').fetchone()[0]

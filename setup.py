@@ -6,15 +6,24 @@ from os import path
 cwd = path.abspath(path.dirname(__file__))
 
 
-with open(path.join(cwd, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
+def get_long_description():
+    with open(path.join(cwd, 'README.rst'), encoding='utf-8') as f:
+        return f.read()
+
+
+def get_version():
+    exec_locals = {}
+    with open(path.join(cwd, 'spatialite', 'version.py')) as f:
+        exec(f.read(), {}, exec_locals)
+    return exec_locals['__version__']
+
 
 setup(
     name='spatialite',
-    version='0.0.2',
+    version=get_version(),
 
     description='Wrapper of sqlite3 module which adds SpatiaLite support.',
-    long_description=long_description,
+    long_description=get_long_description(),
     url='https://github.com/malexer/spatialite',
 
     author='Alex (Oleksii) Markov',
