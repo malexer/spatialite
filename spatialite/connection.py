@@ -70,6 +70,7 @@ class Connection(sqlite3.Connection):
 
     EXT_NAMES = (
         'mod_spatialite',  # Ubuntu
+        'mod_spatialite.so',  # Ubuntu
         'mod_spatialite.dylib',  # macOS
     )
 
